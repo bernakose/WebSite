@@ -60,7 +60,6 @@ namespace WebSite.Controllers
                     return View(yetki);
                 }
             }
-
         }
         public ActionResult Update(long id)
         {
