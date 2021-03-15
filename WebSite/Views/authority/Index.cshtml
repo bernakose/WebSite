@@ -1,0 +1,38 @@
+﻿@model List<WebSite.Models.Entity.app_user_function>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+
+<table id="tblYetki" class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th> Fonksiyon İsim </th>
+            <th> Tag </th>
+            <th> Tool Tip </th>
+            <th> Güncelle </th>
+            <th> Sil </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.func_name</td>
+                <td> @item.tag </td>
+                <td> @item.tooltip </td>
+                <td> <a href="/Authority/Update/@item.func_id" class="btn btn-primary"> Güncelle </a> </td>
+                <td> <a href="/Authority/Delete/@item.func_id" class="btn btn-warning btnurunsil" data-id="@item.func_id"> Sil </a> </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

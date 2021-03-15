@@ -1,0 +1,64 @@
+﻿@model WebSite.Models.Entity.app_user_group
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/demo.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/j-pro-modern.css">
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Add User</h5>
+        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+
+    </div>
+    <div class="card-block">
+        <div class="j-wrapper j-wrapper-640">
+            @using (Html.BeginForm("Update", "Group", FormMethod.Post, new { @class = "md-float-material form-material" }))
+            {
+                @Html.HiddenFor(t => t.group_id, new { @class = "form-control" })
+
+                <div class="j-content">
+                    <div>
+                        <label class="j-label"> Name </label>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="group_name">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.group_name, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="j-label"> Deletable </label>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="usersurname">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.is_delete_table, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="j-response"></div>
+                </div>
+                <!-- end /.content -->
+                <div class="j-footer">
+                    <button type="submit" class="btn btn-primary"> Update Groups </button>
+                </div>
+                <!-- end /.footer -->
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="~/Content/assets/pages/j-pro/js/custom/reg-form.js"></script>
+<script src="~/Content/assets/js/vartical-layout.min.js"></script>

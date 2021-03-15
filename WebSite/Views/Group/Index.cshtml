@@ -1,0 +1,37 @@
+﻿@model List<WebSite.Models.Entity.app_user_group>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<table id="tblGroup" class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th> Id </th>
+            <th> Name </th> 
+            <th> Deletable </th>
+            <th> Güncelle </th>
+            <th> Sil </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.group_id </td>
+                <td> @item.group_name </td>
+                <td> @item.is_delete_table </td>
+                <td> <a href="/Group/Update/@item.group_id" class="btn btn-primary"> Güncelle </a> </td>
+                <td> <a href="/Group/Delete/@item.group_id" class="btn btn-warning btnurunsil" data-id="@item.group_id"> Sil </a> </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

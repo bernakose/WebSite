@@ -1,0 +1,63 @@
+﻿@model WebSite.Models.Entity.app_users
+@{
+    ViewBag.Title = "AddGroup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/demo.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/j-pro-modern.css">
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Add Group</h5>
+        <span></span>
+
+    </div>
+    <div class="card-block">
+        <div class="j-wrapper j-wrapper-640">
+            @using (Html.BeginForm("AddGroup", "Group", FormMethod.Post, new { @class = "md-float-material form-material" }))
+            {
+            <div class="j-content">
+                <div>
+                    <label class="j-label">Group Name</label>
+                    <div class="j-unit">
+                        <div class="j-input">
+                            <label class="j-icon-right" for="group_name">
+                                <i class="icofont icofont-ui-user"></i>
+                            </label>
+                            <input type="text" id="group_name" name="group_name">
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="j-label">Deletable?</label>
+                    <div class="j-unit">
+                        <div class="j-input">
+                            <label class="j-icon-right" for="is_delete_table">
+                                <i class="icofont icofont-ui-user"></i>
+                            </label>
+                            <input type="text" id="is_delete_table" name="is_delete_table">
+                        </div>
+                    </div>
+                </div>
+                <div class="j-response"></div>
+            </div>
+                <!-- end /.content -->
+                <div class="j-footer">
+                    <button type="submit" class="btn btn-primary"> Add Group </button>
+                </div>
+                <!-- end /.footer -->
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="~/Content/assets/pages/j-pro/js/custom/reg-form.js"></script>
+<script src="~/Content/assets/js/vartical-layout.min.js"></script>

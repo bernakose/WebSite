@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebSiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="app_user_function">
+          <Key>
+            <PropertyRef Name="func_id" />
+          </Key>
+          <Property Name="func_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="func_name" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="tag" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="up_func_id" Type="bigint" Nullable="false" />
+          <Property Name="tooltip" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="app_user_group">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="group_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="is_delete_table" Type="bigint" />
+        </EntityType>
+        <EntityType Name="app_user_group_functions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="group_id" Type="bigint" Nullable="false" />
+          <Property Name="func_id" Type="bigint" Nullable="false" />
+          <Property Name="transacting_user" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="app_user_lt_functions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="bigint" Nullable="false" />
+          <Property Name="func_id" Type="bigint" Nullable="false" />
+          <Property Name="transacting_user" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="app_users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="usersurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="usertc" Type="nvarchar" MaxLength="11" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="usermail" Type="nvarchar" MaxLength="50" />
+          <Property Name="userphone" Type="nvarchar" MaxLength="12" />
+          <Property Name="isSystemAdmin" Type="bigint" Nullable="false" />
+          <Property Name="groupId" Type="int" Nullable="false" />
+          <Property Name="avatarImage" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_app_user_lt_functions_fk1">
+          <End Role="app_users" Type="Self.app_users" Multiplicity="1" />
+          <End Role="app_user_lt_functions" Type="Self.app_user_lt_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="app_users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="app_user_lt_functions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_app_user_lt_functions_fk2">
+          <End Role="app_user_function" Type="Self.app_user_function" Multiplicity="1" />
+          <End Role="app_user_lt_functions" Type="Self.app_user_lt_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="app_user_function">
+              <PropertyRef Name="func_id" />
+            </Principal>
+            <Dependent Role="app_user_lt_functions">
+              <PropertyRef Name="func_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebSiteModelStoreContainer">
+          <EntitySet Name="app_user_function" EntityType="Self.app_user_function" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="app_user_group" EntityType="Self.app_user_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="app_user_group_functions" EntityType="Self.app_user_group_functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="app_user_lt_functions" EntityType="Self.app_user_lt_functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="app_users" EntityType="Self.app_users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_app_user_lt_functions_fk1" Association="Self.FK_app_user_lt_functions_fk1">
+            <End Role="app_users" EntitySet="app_users" />
+            <End Role="app_user_lt_functions" EntitySet="app_user_lt_functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_app_user_lt_functions_fk2" Association="Self.FK_app_user_lt_functions_fk2">
+            <End Role="app_user_function" EntitySet="app_user_function" />
+            <End Role="app_user_lt_functions" EntitySet="app_user_lt_functions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebSiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WebSiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="app_user_group" EntityType="WebSiteModel.app_user_group" />
+          <EntitySet Name="app_user_group_functions" EntityType="WebSiteModel.app_user_group_functions" />
+          <EntitySet Name="app_user_function" EntityType="WebSiteModel.app_user_function" />
+          <EntitySet Name="app_users" EntityType="WebSiteModel.app_users" />
+          <EntitySet Name="app_user_lt_functions" EntityType="WebSiteModel.app_user_lt_functions" />
+          <AssociationSet Name="FK_app_user_lt_functions_fk2" Association="WebSiteModel.FK_app_user_lt_functions_fk2">
+            <End Role="app_user_function" EntitySet="app_user_function" />
+            <End Role="app_user_lt_functions" EntitySet="app_user_lt_functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_app_user_lt_functions_fk1" Association="WebSiteModel.FK_app_user_lt_functions_fk1">
+            <End Role="app_users" EntitySet="app_users" />
+            <End Role="app_user_lt_functions" EntitySet="app_user_lt_functions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="app_user_group">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_delete_table" Type="Int64" />
+        </EntityType>
+        <EntityType Name="app_user_group_functions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_id" Type="Int64" Nullable="false" />
+          <Property Name="func_id" Type="Int64" Nullable="false" />
+          <Property Name="transacting_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="app_user_function">
+          <Key>
+            <PropertyRef Name="func_id" />
+          </Key>
+          <Property Name="func_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="func_name" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="tag" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="up_func_id" Type="Int64" Nullable="false" />
+          <Property Name="tooltip" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="app_user_lt_functions" Relationship="WebSiteModel.FK_app_user_lt_functions_fk2" FromRole="app_user_function" ToRole="app_user_lt_functions" />
+        </EntityType>
+        <EntityType Name="app_users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usersurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usertc" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="usermail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userphone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="isSystemAdmin" Type="Int64" Nullable="false" />
+          <Property Name="groupId" Type="Int32" Nullable="false" />
+          <Property Name="avatarImage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="app_user_lt_functions" Relationship="WebSiteModel.FK_app_user_lt_functions_fk1" FromRole="app_users" ToRole="app_user_lt_functions" />
+        </EntityType>
+        <EntityType Name="app_user_lt_functions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int64" Nullable="false" />
+          <Property Name="func_id" Type="Int64" Nullable="false" />
+          <Property Name="transacting_user" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="app_user_function" Relationship="WebSiteModel.FK_app_user_lt_functions_fk2" FromRole="app_user_lt_functions" ToRole="app_user_function" />
+          <NavigationProperty Name="app_users" Relationship="WebSiteModel.FK_app_user_lt_functions_fk1" FromRole="app_user_lt_functions" ToRole="app_users" />
+        </EntityType>
+        <Association Name="FK_app_user_lt_functions_fk2">
+          <End Type="WebSiteModel.app_user_function" Role="app_user_function" Multiplicity="1" />
+          <End Type="WebSiteModel.app_user_lt_functions" Role="app_user_lt_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="app_user_function">
+              <PropertyRef Name="func_id" />
+            </Principal>
+            <Dependent Role="app_user_lt_functions">
+              <PropertyRef Name="func_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_app_user_lt_functions_fk1">
+          <End Type="WebSiteModel.app_users" Role="app_users" Multiplicity="1" />
+          <End Type="WebSiteModel.app_user_lt_functions" Role="app_user_lt_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="app_users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="app_user_lt_functions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebSiteModelStoreContainer" CdmEntityContainer="WebSiteEntities">
+          <EntitySetMapping Name="app_user_group">
+            <EntityTypeMapping TypeName="WebSiteModel.app_user_group">
+              <MappingFragment StoreEntitySet="app_user_group">
+                <ScalarProperty Name="is_delete_table" ColumnName="is_delete_table" />
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="app_user_group_functions">
+            <EntityTypeMapping TypeName="WebSiteModel.app_user_group_functions">
+              <MappingFragment StoreEntitySet="app_user_group_functions">
+                <ScalarProperty Name="transacting_user" ColumnName="transacting_user" />
+                <ScalarProperty Name="func_id" ColumnName="func_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="app_user_function">
+            <EntityTypeMapping TypeName="WebSiteModel.app_user_function">
+              <MappingFragment StoreEntitySet="app_user_function">
+                <ScalarProperty Name="tooltip" ColumnName="tooltip" />
+                <ScalarProperty Name="up_func_id" ColumnName="up_func_id" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+                <ScalarProperty Name="func_name" ColumnName="func_name" />
+                <ScalarProperty Name="func_id" ColumnName="func_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="app_users">
+            <EntityTypeMapping TypeName="WebSiteModel.app_users">
+              <MappingFragment StoreEntitySet="app_users">
+                <ScalarProperty Name="avatarImage" ColumnName="avatarImage" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="isSystemAdmin" ColumnName="isSystemAdmin" />
+                <ScalarProperty Name="userphone" ColumnName="userphone" />
+                <ScalarProperty Name="usermail" ColumnName="usermail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usertc" ColumnName="usertc" />
+                <ScalarProperty Name="usersurname" ColumnName="usersurname" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="app_user_lt_functions">
+            <EntityTypeMapping TypeName="WebSiteModel.app_user_lt_functions">
+              <MappingFragment StoreEntitySet="app_user_lt_functions">
+                <ScalarProperty Name="transacting_user" ColumnName="transacting_user" />
+                <ScalarProperty Name="func_id" ColumnName="func_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

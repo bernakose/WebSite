@@ -1,0 +1,114 @@
+﻿@model WebSite.Models.Entity.app_users
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/demo.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/j-pro-modern.css">
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Add User</h5>
+        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+
+    </div>
+    <div class="card-block">
+        <div class="j-wrapper j-wrapper-640">
+            @using (Html.BeginForm("Guncelle", "User", FormMethod.Post, new { @class = "md-float-material form-material" }))
+            {
+                <div class="j-content">
+                    <div>
+                        <label class="j-label">Name</label>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="username">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.username, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="j-label">Sur Name</label>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="usersurname">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.usersurname, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="j-label">Email</label>
+                        </div>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="usermail">
+                                    <i class="icofont icofont-envelope"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.usermail, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="j-label ">TC</label>
+                        </div>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="usertc">
+                                    <i class="icofont icofont-ui-check"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.usertc, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="j-label ">Password</label>
+                        </div>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="password">
+                                    <i class="icofont icofont-lock"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="j-label ">Phone</label>
+                        </div>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="userphone">
+                                    <i class="icofont icofont-lock"></i>
+                                </label>
+                                @Html.TextBoxFor(t => t.userphone, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="j-response"></div>
+                </div>
+                <!-- end /.content -->
+                <div class="j-footer">
+                    <button type="submit" class="btn btn-primary">Update User</button>
+                </div>
+                <!-- end /.footer -->
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="~/Content/assets/pages/j-pro/js/custom/reg-form.js"></script>
+<script src="~/Content/assets/js/vartical-layout.min.js"></script>

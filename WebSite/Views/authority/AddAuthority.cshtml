@@ -1,0 +1,81 @@
+﻿@model List<WebSite.Models.Entity.app_user_function>
+@{
+    ViewBag.Title = "AddAuthority";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/demo.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/pages/j-pro/css/j-pro-modern.css">
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Add Authority</h5>
+        <span></span>
+
+    </div>
+    <div class="card-block">
+        <div class="j-wrapper j-wrapper-640">
+            @using (Html.BeginForm("AddAuthority", "Authority", FormMethod.Post, new { @class = "md-float-material form-material" }))
+            {
+                <div class="j-content">
+                    <div>
+                        <label class="j-label"> Function Name</label>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="func_name">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </label>
+                                <input type="text" id="func_name" name="func_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="j-label"> Tag </label>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="tag">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </label>
+                                <input type="text" id="tag" name="tag">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="j-label"> Tooltip </label>
+                        </div>
+                        <div class="j-unit">
+                            <div class="j-input">
+                                <label class="j-icon-right" for="tooltip">
+                                    <i class="icofont icofont-envelope"></i>
+                                </label>
+                                <input type="text" id="tooltip" name="tooltip">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="j-unit">
+                        <label class="j-input j-select">
+                            @Html.DropDownList("up_func_id")
+                            <i></i>
+                        </label>
+                    </div>
+                    <div class="j-response"></div>
+                </div>
+                <!-- end /.content -->
+                <div class="j-footer">
+                    <button type="submit" class="btn btn-primary">Add Authority</button>
+                </div>
+                <!-- end /.footer -->
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="~/Content/assets/pages/j-pro/js/custom/reg-form.js"></script>
+<script src="~/Content/assets/js/vartical-layout.min.js"></script>

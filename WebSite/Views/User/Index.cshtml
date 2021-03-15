@@ -1,0 +1,41 @@
+﻿@model List<WebSite.Models.Entity.app_users>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Index</h2>*@
+
+<br />
+<br />
+<br />
+<br />
+
+<table id="tblUrun" class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th> İsim </th>
+            <th> Soyisim </th>
+            <th> TC </th>
+            <th> E-Mail </th>
+            <th> Güncelle </th>
+            <th> Sil </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @item.username </td>
+                <td> @item.usersurname </td>
+                <td> @item.usertc </td>
+                <td> @item.usermail</td>
+                <td> <a href="/User/Guncelle/@item.Id" class="btn btn-primary"> Güncelle </a> </td>
+                <td> <a  href="/User/Delete/@item.Id"  class="btn btn-warning btnurunsil" data-id="@item.Id"> Sil </a> </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
